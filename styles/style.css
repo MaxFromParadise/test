@@ -1,0 +1,118 @@
+body {
+	padding-top: 5rem;
+	display: grid;
+	max-width: 1440px;
+	grid-template-columns: 3fr 1fr;
+	gap: 2rem;
+	margin: 0 auto;
+}
+.test {
+	background: gray;
+	border-radius: 1.25rem;
+}
+@media (max-width: 767.98px) {
+	body {
+		display: block;
+	}
+}
+.award-card {
+	position: relative;
+	width: 100%;
+	min-width: 320px;
+	height: 475px;
+	color: var(--Color-6, #292b32);
+	text-align: center;
+	font-family: Montserrat;
+	font-size: 0.875rem;
+	font-style: normal;
+	font-weight: 700;
+	overflow: hidden;
+	border-radius: 1.25rem;
+}
+.award-card__content {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+}
+.award-card__slide {
+	background-color: #f3f4f5;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1.25rem;
+	transition: background-color 0.3s ease;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.8s ease, opacity 0.8s ease;
+	z-index: 0;
+	opacity: 0;
+}
+.award-card__slide:nth-of-type(1) {
+	background-color: #beebff;
+}
+.award-card__slide:nth-of-type(2) {
+	background-color: #caff3d;
+}
+.award-card__slide:nth-of-type(3) {
+	background-color: #f3f4f5;
+}
+.award-card__top {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	text-wrap: nowrap;
+	color: var(--Color-7, #636878);
+	text-align: center;
+	font-size: 0.75rem;
+}
+
+.award-card__bottom {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.award-card__description {
+	position: absolute;
+	top: 110%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.award-card__wreaths {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	fill: #00b2ff;
+	transition: fill 0.3s ease 0s;
+}
+.award-card__slide:hover .award-card__wreaths {
+	fill: #caff3d;
+}
+.award-card__slide:hover .award-card__content {
+	text-decoration: underline;
+}
+
+.award-card__slide.active {
+	opacity: 1;
+	z-index: 1;
+	pointer-events: auto;
+	transform: translateX(0);
+}
+
+.award-card__slide.to-left {
+	transform: translateX(-100%);
+}
+
+.award-card__slide.to-right {
+	transform: translateX(100%);
+}

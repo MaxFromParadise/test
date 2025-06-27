@@ -10,6 +10,9 @@ if (document.querySelector('.award-card__wrap') && document.querySelectorAll('.a
 		},
 		() => {
 			slides[1].style.opacity = '0';
+			setTimeout(() => {
+				slides[1].style.zIndex = '-1';
+			}, 800);
 			slides[0].classList.remove('active');
 		},
 		() => {
@@ -17,6 +20,9 @@ if (document.querySelector('.award-card__wrap') && document.querySelectorAll('.a
 			cardWrapper.style.transform = 'translateX(0%)';
 			setTimeout(() => {
 				slides[1].style.opacity = '1';
+				setTimeout(() => {
+					slides[1].style.zIndex = '0';
+				}, 800);
 			}, 1000);
 		},
 	];

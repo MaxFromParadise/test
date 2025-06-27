@@ -1,40 +1,34 @@
-const awardCard = document.querySelectorAll('.award-card');
-if (awardCard) {
+if (document.querySelector('.award-card__wrap') && document.querySelectorAll('.award-card__slide')) {
+	const cardWrapper = document.querySelector('.award-card__wrap');
 	const slides = document.querySelectorAll('.award-card__slide');
-	let currentIndex = 0;
+	slides[0].classList.add('active');
 
-	slides[currentIndex].classList.add('active');
+	const actions = [
+		() => {
+			cardWrapper.style.transform = 'translateX(-50%)';
+			slides[0].classList.remove('active');
+		},
+		() => {
+			slides[1].style.opacity = '0';
+			slides[0].classList.remove('active');
+		},
+		() => {
+			slides[0].classList.add('active');
+			cardWrapper.style.transform = 'translateX(0%)';
+			setTimeout(() => {
+				slides[1].style.opacity = '1';
+			}, 1000);
+		},
+	];
 
-	setInterval(() => {
-		const current = slides[currentIndex];
-		let nextIndex;
+	let current = 0;
 
-		if (currentIndex === 0) {
-			nextIndex = 1;
-			current.classList.remove('active');
-			current.classList.add('to-left');
+	setTimeout(() => {
+		actions[current]();
 
-			slides[nextIndex].classList.add('active');
-		} else if (currentIndex === 1) {
-			nextIndex = 2;
-			current.classList.remove('active');
-			slides[nextIndex].classList.add('active');
-		} else {
-			nextIndex = 0;
-			current.classList.remove('active');
-			current.classList.add('to-right');
-
-			slides[nextIndex].classList.add('active');
-		}
-
-		setTimeout(() => {
-			slides.forEach((slide, index) => {
-				if (index !== nextIndex) {
-					slide.classList.remove('to-left', 'to-right');
-				}
-			});
-		}, 800);
-
-		currentIndex = nextIndex;
+		setInterval(() => {
+			current = (current + 1) % actions.length;
+			actions[current]();
+		}, 3000);
 	}, 3000);
 }
